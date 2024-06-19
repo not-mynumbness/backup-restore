@@ -9,9 +9,11 @@ read -p "Enter the label name of the backup drive: " backup_label
 # Prompt user for backup folder name
 read -p "Enter the folder name for the backup: " backup_folder
 root="/"
-backup_location="/run/media/deffn/$backup_label/$backup_folder"
-backup_media="/run/media/deffn/$backup_label"
-logic="rsync -aAXH --info=progress2 --delete --exclude='/swap/*' --exclude='/dev/*' --exclude='/proc/*' --exclude='/sys/*' --exclude='/tmp/*' --exclude='/run/*' --exclude='/mnt/*' --exclude='/media/*' --exclude='/lost+found/'"
+backup_location="/run/media/$whoami/$backup_label/$backup_folder"
+backup_media="/run/media/$whoami/$backup_label"
+#logic="rsync -aAXH --info=progress2 --delete --exclude='/boot/*' --exclude='/efi' --exclude='/swap/*' --exclude='/dev/*' --exclude='/proc/*' --exclude='/sys/*' --exclude='/tmp/*' --exclude='/run/*' --exclude='/mnt/*' --exclude='/media/*' --exclude='/lost+found/' "
+logic="rsync -aAXH --info=progress2 --delete --exclude={'/boot','/efi','/swap','/dev','/proc','/sys','/tmp','/run','/mnt','/media','/lost+found/'} "
+
 
 # Logging function
 log() {
@@ -69,3 +71,4 @@ fi
 
 # Testing comment
 # Remember to test this script thoroughly on sample data before using it for critical backups
+
