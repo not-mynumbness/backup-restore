@@ -54,12 +54,12 @@ read -p "Do you want to back up or restore? (Type 'backup' or 'restore'): " acti
 if [ "$action" == "backup" ]; then
     echo "Starting backup process to $backup_location..."
     log "Backup process started to $backup_location"
-    echo "$logic $root $backup_location"
+    $logic $root $backup_location
     log "Backup command executed: $logic $root $backup_location"
 elif [ "$action" == "restore" ]; then
     echo "Starting restore process from $backup_location..."
     log "Restore process started from $backup_location"
-    echo "$logic $backup_location $root"
+    $logic $backup_location $root
     log "Restore command executed: $logic $backup_location $root"
 else
     echo "Invalid input. Please type 'backup' or 'restore'."
